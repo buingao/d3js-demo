@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SVG</title>
+    <script src="../d3.v7.min.js"></script>
+    <style></style>
+  </head>
+  <body>
+    <script>
+      var width = 500;
+      var height = 50;
+      var dataset = [5, 10, 15, 20, 25];
+      var svg = d3
+        .select("body")
+        .append("svg")
+        .attr("width", width)
+        .attr("height", height);
+      svg
+        .selectAll("circle")
+        .data(dataset)
+        .enter()
+        .append("circle") // 挂圆
+        .attr("cx", function (d, i) {
+          // 中心点x
+          return i * 50 + 25;
+        })
+        .attr("cy", height / 2) // 中心点y
+        .attr("r", function (d) {
+          // 半径
+          return d;
+        })
+        .attr("fill", "#ff0") // 填充
+        .attr("stroke", "orange") // 描边
+        .attr("stroke-width", function (d) {
+          // 描边宽度
+          return d / 2;
+        });
+    </script>
+  </body>
+</html>

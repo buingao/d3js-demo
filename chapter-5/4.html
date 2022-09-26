@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>D3</title>
+    <script src="../d3.v7.min.js"></script>
+    <style>
+      div.bar {
+        display: inline-block;
+        width: 20px;
+        height: 75px;
+        margin-right: 2px;
+        background-color: teal;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      // var dataset = [5, 10, 15, 20, 25];
+      // var dataset = [
+      //   25, 7, 5, 26, 11, 8, 25, 14, 23, 19, 14, 11, 22, 29, 11, 13, 12, 17, 18,
+      //   10, 24, 18, 25, 9, 3,
+      // ];
+      var dataset = [];
+      for (var i = 0; i < 25; i++) {
+        var num = Math.floor(Math.random() * 30);
+        dataset.push(num);
+      }
+      d3.select("body")
+        .selectAll("div")
+        .data(dataset) // 传10个值给data（），它就会循环10次
+        .enter()
+        .append("div")
+        .attr("class", "bar")
+        .style("height", function (d) {
+          return d * 5 + "px";
+        });
+    </script>
+  </body>
+</html>

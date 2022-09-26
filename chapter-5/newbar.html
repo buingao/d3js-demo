@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>D3</title>
+    <script src="../d3.v7.min.js"></script>
+    <style></style>
+  </head>
+  <body>
+    <script>
+      var w = 500;
+      var h = 100;
+      var barPadding = 1;
+      // var dataset = [5, 10, 15, 20, 25, 30];
+      var dataset = [
+        5, 10, 13, 19, 21, 25, 22, 18, 15, 13, 11, 12, 15, 20, 18, 17, 16, 18,
+        23, 25,
+      ];
+
+      var svg = d3
+        .select("body")
+        .append("svg")
+        .attr("width", w)
+        .attr("height", h);
+      svg
+        .selectAll("rect") // 在D3中，永远得先选择你想要操作的元素，即使这个元素或元素集暂时还没有。
+        .data(dataset)
+        .enter()
+        .append("rect")
+        .attr("x", function (d, i) {
+          return i * (w / dataset.length - barPadding);
+        })
+        .attr("y", function (d) {
+          return h - d;
+        })
+        .attr("width", 20)
+        .attr("height", function (d) {
+          return d * 4;
+        })
+        .attr("fill", function (d) {
+          return "rgb(0,0," + Math.round(d * 10) + ")";
+        });
+    </script>
+  </body>
+</html>
